@@ -2,9 +2,11 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,7 +23,7 @@ const Register = ({ setAlert }) => {
     if (password !== confirmPassword) {
       setAlert('Passwords do not match.', 'danger');
     } else {
-      console.log('Success');
+      register({ name, email, password });
     }
   };
 
@@ -33,10 +35,10 @@ const Register = ({ setAlert }) => {
       </p>
       <form className='form' onSubmit={onSubmit}>
         <div className='form-group'>
-          <input type='text' placeholder='Name' name='name' value={name} onChange={onChange} required />
+          <input type='text' placeholder='Name' name='name' value={name} onChange={onChange} />
         </div>
         <div className='form-group'>
-          <input type='email' placeholder='Email Address' name='email' value={email} onChange={onChange} required />
+          <input type='email' placeholder='Email Address' name='email' value={email} onChange={onChange} />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a Gravatar email
           </small>
@@ -49,7 +51,6 @@ const Register = ({ setAlert }) => {
             type='password'
             placeholder='Confirm Password'
             name='confirmPassword'
-            minLength='6'
             value={confirmPassword}
             onChange={onChange}
           />
@@ -65,6 +66,7 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
