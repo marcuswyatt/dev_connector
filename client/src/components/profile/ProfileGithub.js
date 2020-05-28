@@ -48,4 +48,5 @@ ProfileGithub.propTypes = {
 const mapStateToProps = (state) => ({
   repos: state.profile.repos,
 });
+
 export default connect(mapStateToProps, { getGithubRepos })(ProfileGithub);
