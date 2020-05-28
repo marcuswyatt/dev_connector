@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
-import { getProfiles } from '../../actions/profile';
 import PostItem from './PostItem';
 import PostForm from './PostForm';
 
